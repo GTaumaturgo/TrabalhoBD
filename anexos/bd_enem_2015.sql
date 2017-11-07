@@ -283,8 +283,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Prova` (
 -- Table `bd_enem_2015`.`Candidato_has_NecessidadeEspecial`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_NecessidadeEspecial` (
-  `Candidato_IdCandidato` INT NULL,
-  `NecessidadeEspecial_IdTipoNecess` INT NULL,
+  `Candidato_IdCandidato` INT NOT NULL,
+  `NecessidadeEspecial_IdTipoNecess` INT NOT NULL,
   PRIMARY KEY (`Candidato_IdCandidato`, `NecessidadeEspecial_IdTipoNecess`),
   INDEX `fk_Candidato_has_NecessidadeEspecial_NecessidadeEspecial1_idx` (`NecessidadeEspecial_IdTipoNecess` ASC),
   INDEX `fk_Candidato_has_NecessidadeEspecial_Candidato1_idx` (`Candidato_IdCandidato` ASC),
