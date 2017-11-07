@@ -8,47 +8,41 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bd_enem_2015
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bd_enem_2015
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET utf8 ;
+USE `bd_enem_2015` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`table1`
+-- Table `bd_enem_2015`.`table1`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`table1` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`table1` (
 )
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`UnidadeFederativa`
+-- Table `bd_enem_2015`.`UnidadeFederativa`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`UnidadeFederativa` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`UnidadeFederativa` (
   `IdUF` INT NOT NULL,
   `SiglaUF` VARCHAR(45) NULL,
   PRIMARY KEY (`IdUF`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Municipio`
+-- Table `bd_enem_2015`.`Municipio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Municipio` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Municipio` (
   `IdMunic` INT NOT NULL,
   `NomeMunic` VARCHAR(45) NULL,
   PRIMARY KEY (`IdMunic`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Escola`
+-- Table `bd_enem_2015`.`Escola`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Escola` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Escola` (
   `IdEscola` INT NOT NULL,
   `TipoDependAdmin` VARCHAR(45) NULL,
   `TipoLocalizEscol` VARCHAR(45) NULL,
@@ -61,21 +55,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Escola` (
   INDEX `fk_Escola_Municipio1_idx` (`Municipio_IdMunic1` ASC),
   CONSTRAINT `fk_Escola_UnidadeFederativa1`
     FOREIGN KEY (`UnidadeFederativa_IdUF`)
-    REFERENCES `mydb`.`UnidadeFederativa` (`IdUF`)
+    REFERENCES `bd_enem_2015`.`UnidadeFederativa` (`IdUF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Escola_Municipio1`
     FOREIGN KEY (`Municipio_IdMunic1`)
-    REFERENCES `mydb`.`Municipio` (`IdMunic`)
+    REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Candidato`
+-- Table `bd_enem_2015`.`Candidato`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Candidato` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato` (
   `IdCandidato` INT NOT NULL,
   `CorRaca` VARCHAR(45) NULL,
   `AnoConcluEM` DATETIME NULL,
@@ -96,26 +88,24 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Candidato` (
   INDEX `fk_Candidato_Escola1_idx` (`Escola_IdEscola` ASC),
   CONSTRAINT `fk_Candidato_UnidadeFederativa1`
     FOREIGN KEY (`UnidadeFederativa_IdUF1`)
-    REFERENCES `mydb`.`UnidadeFederativa` (`IdUF`)
+    REFERENCES `bd_enem_2015`.`UnidadeFederativa` (`IdUF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Candidato_Municipio1`
     FOREIGN KEY (`Municipio_IdMunic`)
-    REFERENCES `mydb`.`Municipio` (`IdMunic`)
+    REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Candidato_Escola1`
     FOREIGN KEY (`Escola_IdEscola`)
-    REFERENCES `mydb`.`Escola` (`IdEscola`)
+    REFERENCES `bd_enem_2015`.`Escola` (`IdEscola`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Redacao`
+-- Table `bd_enem_2015`.`Redacao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Redacao` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Redacao` (
   `IdRedacao` INT NOT NULL,
   `Situacao` VARCHAR(45) NULL,
   `Nota` INT NULL,
@@ -124,16 +114,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Redacao` (
   INDEX `fk_Redacao_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_Redacao_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`NotaCompetencia`
+-- Table `bd_enem_2015`.`NotaCompetencia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`NotaCompetencia` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NotaCompetencia` (
   `IdNumComp` INT NOT NULL,
   `Nota` INT NULL,
   `Redacao_IdRedacao` INT NOT NULL,
@@ -141,16 +129,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`NotaCompetencia` (
   INDEX `fk_NotaCompetencia_Redacao1_idx` (`Redacao_IdRedacao` ASC),
   CONSTRAINT `fk_NotaCompetencia_Redacao1`
     FOREIGN KEY (`Redacao_IdRedacao`)
-    REFERENCES `mydb`.`Redacao` (`IdRedacao`)
+    REFERENCES `bd_enem_2015`.`Redacao` (`IdRedacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`CertificadoEnsinoMedio`
+-- Table `bd_enem_2015`.`CertificadoEnsinoMedio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`CertificadoEnsinoMedio` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`CertificadoEnsinoMedio` (
   `IdCertificado` INT NOT NULL,
   `IndicSolicCertif` VARCHAR(45) NULL,
   `NomeEntCert` VARCHAR(45) NULL,
@@ -159,16 +145,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CertificadoEnsinoMedio` (
   INDEX `fk_CertificadoEnsinoMedio_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_CertificadoEnsinoMedio_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Inscricao`
+-- Table `bd_enem_2015`.`Inscricao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Inscricao` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Inscricao` (
   `IdNumInscri` INT NOT NULL,
   `AnoDoEnem` DATE NULL,
   `IndicUnidHosp` VARCHAR(45) NULL,
@@ -182,36 +166,32 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Inscricao` (
   INDEX `fk_Inscricao_Municipio1_idx` (`Municipio_IdMunic` ASC),
   CONSTRAINT `fk_Inscricao_UnidadeFederativa1`
     FOREIGN KEY (`UnidadeFederativa_IdUF`)
-    REFERENCES `mydb`.`UnidadeFederativa` (`IdUF`)
+    REFERENCES `bd_enem_2015`.`UnidadeFederativa` (`IdUF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Inscricao_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Inscricao_Municipio1`
     FOREIGN KEY (`Municipio_IdMunic`)
-    REFERENCES `mydb`.`Municipio` (`IdMunic`)
+    REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`TipoPergunta`
+-- Table `bd_enem_2015`.`TipoPergunta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TipoPergunta` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoPergunta` (
   `IdTipoPergunta` INT NOT NULL,
   `Pergunta` VARCHAR(45) NULL,
   PRIMARY KEY (`IdTipoPergunta`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`QuestaoEstudoSocioeconomico`
+-- Table `bd_enem_2015`.`QuestaoEstudoSocioeconomico`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`QuestaoEstudoSocioeconomico` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`QuestaoEstudoSocioeconomico` (
   `IdQuestao` INT NOT NULL,
   `Resposta` VARCHAR(45) NULL,
   `TipoPergunta_IdTipoPergunta` INT NOT NULL,
@@ -221,51 +201,43 @@ CREATE TABLE IF NOT EXISTS `mydb`.`QuestaoEstudoSocioeconomico` (
   INDEX `fk_QuestaoEstudoSocioeconomico_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_QuestaoEstudoSocioeconomico_TipoPergunta1`
     FOREIGN KEY (`TipoPergunta_IdTipoPergunta`)
-    REFERENCES `mydb`.`TipoPergunta` (`IdTipoPergunta`)
+    REFERENCES `bd_enem_2015`.`TipoPergunta` (`IdTipoPergunta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_QuestaoEstudoSocioeconomico_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`NecessidadeEspecial`
+-- Table `bd_enem_2015`.`NecessidadeEspecial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`NecessidadeEspecial` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
   `IdTipoNecess` INT NOT NULL,
   `NomeNecess` VARCHAR(45) NULL,
   PRIMARY KEY (`IdTipoNecess`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`AtendimentoEspecial`
+-- Table `bd_enem_2015`.`AtendimentoEspecial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`AtendimentoEspecial` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`AtendimentoEspecial` (
   `IdTipoAtend` INT NOT NULL,
   `NomeAtendEsp` VARCHAR(45) NULL,
   PRIMARY KEY (`IdTipoAtend`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`TipoProva`
+-- Table `bd_enem_2015`.`TipoProva`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`TipoProva` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoProva` (
   `IdProva` INT NOT NULL,
   `AreaDeConhec` VARCHAR(45) NULL,
   PRIMARY KEY (`IdProva`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Prova`
+-- Table `bd_enem_2015`.`Prova`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Prova` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Prova` (
   `IdProva` INT NOT NULL,
   `VetorResp` VARCHAR(45) NULL,
   `VetorGab` VARCHAR(45) NULL,
@@ -283,31 +255,29 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Prova` (
   INDEX `fk_Prova_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_Prova_TipoProva1`
     FOREIGN KEY (`TipoProva_IdProva`)
-    REFERENCES `mydb`.`TipoProva` (`IdProva`)
+    REFERENCES `bd_enem_2015`.`TipoProva` (`IdProva`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Prova_UnidadeFederativa1`
     FOREIGN KEY (`UnidadeFederativa_IdUF`)
-    REFERENCES `mydb`.`UnidadeFederativa` (`IdUF`)
+    REFERENCES `bd_enem_2015`.`UnidadeFederativa` (`IdUF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Prova_Municipio1`
     FOREIGN KEY (`Municipio_IdMunic`)
-    REFERENCES `mydb`.`Municipio` (`IdMunic`)
+    REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Prova_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Candidato_has_NecessidadeEspecial`
+-- Table `bd_enem_2015`.`Candidato_has_NecessidadeEspecial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Candidato_has_NecessidadeEspecial` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_NecessidadeEspecial` (
   `Candidato_IdCandidato` INT NULL,
   `NecessidadeEspecial_IdTipoNecess` INT NULL,
   PRIMARY KEY (`Candidato_IdCandidato`, `NecessidadeEspecial_IdTipoNecess`),
@@ -315,21 +285,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Candidato_has_NecessidadeEspecial` (
   INDEX `fk_Candidato_has_NecessidadeEspecial_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_Candidato_has_NecessidadeEspecial_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Candidato_has_NecessidadeEspecial_NecessidadeEspecial1`
     FOREIGN KEY (`NecessidadeEspecial_IdTipoNecess`)
-    REFERENCES `mydb`.`NecessidadeEspecial` (`IdTipoNecess`)
+    REFERENCES `bd_enem_2015`.`NecessidadeEspecial` (`IdTipoNecess`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
--- Table `mydb`.`Candidato_has_AtendimentoEspecial`
+-- Table `bd_enem_2015`.`Candidato_has_AtendimentoEspecial`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Candidato_has_AtendimentoEspecial` (
+CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_AtendimentoEspecial` (
   `Candidato_IdCandidato` INT NULL,
   `AtendimentoEspecial_IdTipoAtend` INT NOT NULL,
   PRIMARY KEY (`Candidato_IdCandidato`, `AtendimentoEspecial_IdTipoAtend`),
@@ -337,16 +305,14 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Candidato_has_AtendimentoEspecial` (
   INDEX `fk_Candidato_has_AtendimentoEspecial_Candidato1_idx` (`Candidato_IdCandidato` ASC),
   CONSTRAINT `fk_Candidato_has_AtendimentoEspecial_Candidato1`
     FOREIGN KEY (`Candidato_IdCandidato`)
-    REFERENCES `mydb`.`Candidato` (`IdCandidato`)
+    REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Candidato_has_AtendimentoEspecial_AtendimentoEspecial1`
     FOREIGN KEY (`AtendimentoEspecial_IdTipoAtend`)
-    REFERENCES `mydb`.`AtendimentoEspecial` (`IdTipoAtend`)
+    REFERENCES `bd_enem_2015`.`AtendimentoEspecial` (`IdTipoAtend`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
