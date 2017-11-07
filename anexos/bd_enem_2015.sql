@@ -10,18 +10,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema bd_enem_2015
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema bd_enem_2015
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET utf8 ;
 USE `bd_enem_2015` ;
 
--- -----------------------------------------------------
--- Table `bd_enem_2015`.`table1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`table1` (
-)
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`UnidadeFederativa`
@@ -29,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`table1` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`UnidadeFederativa` (
   `IdUF` INT NOT NULL,
   `SiglaUF` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdUF`))
+  PRIMARY KEY (`IdUF`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Municipio`
@@ -37,7 +29,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`UnidadeFederativa` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Municipio` (
   `IdMunic` INT NOT NULL,
   `NomeMunic` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdMunic`))
+  PRIMARY KEY (`IdMunic`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Escola`
@@ -62,7 +55,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Escola` (
     FOREIGN KEY (`Municipio_IdMunic1`)
     REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Candidato`
@@ -100,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato` (
     FOREIGN KEY (`Escola_IdEscola`)
     REFERENCES `bd_enem_2015`.`Escola` (`IdEscola`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Redacao`
@@ -116,7 +111,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Redacao` (
     FOREIGN KEY (`Candidato_IdCandidato`)
     REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`NotaCompetencia`
@@ -131,7 +127,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NotaCompetencia` (
     FOREIGN KEY (`Redacao_IdRedacao`)
     REFERENCES `bd_enem_2015`.`Redacao` (`IdRedacao`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`CertificadoEnsinoMedio`
@@ -147,7 +144,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`CertificadoEnsinoMedio` (
     FOREIGN KEY (`Candidato_IdCandidato`)
     REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Inscricao`
@@ -178,7 +176,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Inscricao` (
     FOREIGN KEY (`Municipio_IdMunic`)
     REFERENCES `bd_enem_2015`.`Municipio` (`IdMunic`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`TipoPergunta`
@@ -186,7 +185,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Inscricao` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoPergunta` (
   `IdTipoPergunta` INT NOT NULL,
   `Pergunta` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdTipoPergunta`))
+  PRIMARY KEY (`IdTipoPergunta`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`QuestaoEstudoSocioeconomico`
@@ -208,7 +208,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`QuestaoEstudoSocioeconomico` (
     FOREIGN KEY (`Candidato_IdCandidato`)
     REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`NecessidadeEspecial`
@@ -216,7 +217,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`QuestaoEstudoSocioeconomico` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
   `IdTipoNecess` INT NOT NULL,
   `NomeNecess` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdTipoNecess`))
+  PRIMARY KEY (`IdTipoNecess`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`AtendimentoEspecial`
@@ -224,7 +226,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`AtendimentoEspecial` (
   `IdTipoAtend` INT NOT NULL,
   `NomeAtendEsp` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdTipoAtend`))
+  PRIMARY KEY (`IdTipoAtend`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`TipoProva`
@@ -232,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`AtendimentoEspecial` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoProva` (
   `IdProva` INT NOT NULL,
   `AreaDeConhec` VARCHAR(45) NULL,
-  PRIMARY KEY (`IdProva`))
+  PRIMARY KEY (`IdProva`));
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Prova`
@@ -272,7 +276,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Prova` (
     FOREIGN KEY (`Candidato_IdCandidato`)
     REFERENCES `bd_enem_2015`.`Candidato` (`IdCandidato`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Candidato_has_NecessidadeEspecial`
@@ -292,7 +297,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_NecessidadeEspecial` (
     FOREIGN KEY (`NecessidadeEspecial_IdTipoNecess`)
     REFERENCES `bd_enem_2015`.`NecessidadeEspecial` (`IdTipoNecess`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 -- -----------------------------------------------------
 -- Table `bd_enem_2015`.`Candidato_has_AtendimentoEspecial`
@@ -312,7 +318,8 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_AtendimentoEspecial` (
     FOREIGN KEY (`AtendimentoEspecial_IdTipoAtend`)
     REFERENCES `bd_enem_2015`.`AtendimentoEspecial` (`IdTipoAtend`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
