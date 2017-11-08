@@ -246,6 +246,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Prova` (
   `VetorResp` VARCHAR(45) NULL,
   `VetorGab` VARCHAR(45) NULL,
   `TipoLingua` VARCHAR(45) NULL,
+  `CodProva` VARCHAR(45) NULL,
   `Nota` INT NULL,
   `Presença` VARCHAR(45) NULL,
   `TipoProva_IdProva` INT NOT NULL,
