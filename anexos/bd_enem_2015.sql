@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Inscricao` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoPergunta` (
   `IdTipoPergunta` INT NOT NULL,
-  `Pergunta` VARCHAR(45) NULL,
+  `Pergunta` VARCHAR(300) NULL,
   PRIMARY KEY (`IdTipoPergunta`));
 
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`QuestaoEstudoSocioeconomico` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
   `IdTipoNecess` INT NOT NULL,
-  `NomeNecess` VARCHAR(45) NULL,
+  `NomeNecess` VARCHAR(300) NULL,
   PRIMARY KEY (`IdTipoNecess`));
 
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`AtendimentoEspecial` (
   `IdTipoAtend` INT NOT NULL,
-  `NomeAtendEsp` VARCHAR(45) NULL,
+  `NomeAtendEsp` VARCHAR(300) NULL,
   PRIMARY KEY (`IdTipoAtend`));
 
 
