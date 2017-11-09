@@ -17,11 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET utf8 ;
 USE `bd_enem_2015` ;
 
--- -----------------------------------------------------
--- Table `bd_enem_2015`.`table1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`table1` (
-);
+
 
 
 -- -----------------------------------------------------
