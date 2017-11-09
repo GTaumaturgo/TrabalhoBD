@@ -1,0 +1,1 @@
+drop database bd_enem_2015;
