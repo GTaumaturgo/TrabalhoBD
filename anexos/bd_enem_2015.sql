@@ -349,7 +349,6 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_AtendimentoEspecial` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`CadernoProva` (
   `Presenca` VARCHAR(45) NULL,
-  `CodProva` VARCHAR(45) NULL,
   `Nota` FLOAT NULL,
   `Resposta` VARCHAR(45) NULL,
   `Prova_IdProva` INT NOT NULL,
