@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema bd_enem_2015
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET Latin1 ;
 USE `bd_enem_2015` ;
 
 
