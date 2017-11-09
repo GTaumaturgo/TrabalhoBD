@@ -18,13 +18,6 @@ CREATE SCHEMA IF NOT EXISTS `bd_enem_2015` DEFAULT CHARACTER SET utf8 ;
 USE `bd_enem_2015` ;
 
 -- -----------------------------------------------------
--- Table `bd_enem_2015`.`table1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`table1` (
-);
-
-
--- -----------------------------------------------------
 -- Table `bd_enem_2015`.`UnidadeFederativa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`UnidadeFederativa` (
