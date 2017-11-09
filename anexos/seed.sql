@@ -1,4 +1,24 @@
-/* tipo_favorecido */
+insert into bd_enem_2015.CorProva values(0, "Azul");
+insert into bd_enem_2015.CorProva values(1, "Amarelo");
+insert into bd_enem_2015.CorProva values(2, "Branco");
+insert into bd_enem_2015.CorProva values(3, "Rosa");
+insert into bd_enem_2015.CorProva values(4, "Branco - Adaptada(Braille)");
+insert into bd_enem_2015.CorProva values(5, "Azul - Reaplicação");
+insert into bd_enem_2015.CorProva values(6, "Amarelo - Reaplicação");
+insert into bd_enem_2015.CorProva values(7, "Branco - Reaplicação");
+insert into bd_enem_2015.CorProva values(8, "Rosa - Reaplicação");
+
+
+
+
+
+
+
+
+
+
+
+
 insert into bd_enem_2015.NecessidadeEspecial values(0, "Indicador de Baixa visão");
 insert into bd_enem_2015.NecessidadeEspecial values(1, "Indicador de Cegueira");
 insert into bd_enem_2015.NecessidadeEspecial values(2, "Indicador de Surdez");

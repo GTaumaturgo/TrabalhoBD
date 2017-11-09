@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Escola` (
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato` (
   `IdCandidato` INT NOT NULL,
   `CorRaca` VARCHAR(45) NULL,
-  `AnoConcluEM` DATETIME NULL,
+  `AnoConcluEM` INT NULL,
   `EstadoCivil` VARCHAR(45) NULL,
   `Nacionalidade` VARCHAR(45) NULL,
   `TipoEscolaEM` VARCHAR(45) NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato` (
   `Idade` INT NULL,
   `UnidadeFederativa_IdUF` INT NOT NULL,
   `Municipio_IdMunic` INT NOT NULL,
-  `Escola_IdEscola` INT NOT NULL,
+  `Escola_IdEscola` INT NULL,
   PRIMARY KEY (`IdCandidato`),
   INDEX `fk_Candidato_UnidadeFederativa1_idx` (`UnidadeFederativa_IdUF` ASC),
   INDEX `fk_Candidato_Municipio1_idx` (`Municipio_IdMunic` ASC),
