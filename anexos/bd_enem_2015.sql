@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`QuestaoEstudoSocioeconomico` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
   `IdTipoNecess` INT NOT NULL,
-  `NomeNecess` VARCHAR(45) NULL,
+  `NomeNecess` VARCHAR(300) NULL,
   PRIMARY KEY (`IdTipoNecess`));
 
 
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`NecessidadeEspecial` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`AtendimentoEspecial` (
   `IdTipoAtend` INT NOT NULL,
-  `NomeAtendEsp` VARCHAR(45) NULL,
+  `NomeAtendEsp` VARCHAR(300) NULL,
   PRIMARY KEY (`IdTipoAtend`));
 
 
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`CorProva` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`TipoProva` (
   `CodTipo` INT NOT NULL,
-  `VetGabarito` VARCHAR(45) NULL,
+  `VetGabarito` VARCHAR(55) NULL,
   `AreaConhecimento_idAreaConhecimento` INT NOT NULL,
   `CorProva_idCorProva` INT NOT NULL,
   PRIMARY KEY (`CodTipo`),
@@ -351,10 +351,10 @@ CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`Candidato_has_AtendimentoEspecial` (
 -- Table `bd_enem_2015`.`CadernoProva`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bd_enem_2015`.`CadernoProva` (
+  `Prova_IdProva` INT NOT NULL,
   `Presenca` VARCHAR(45) NULL,
   `Nota` FLOAT NULL,
-  `Resposta` VARCHAR(45) NULL,
-  `Prova_IdProva` INT NOT NULL,
+  `Resposta` VARCHAR(300) NULL,
   `TipoProva_CodTipo` INT NOT NULL,
   PRIMARY KEY (`Prova_IdProva`, `TipoProva_CodTipo`),
   INDEX `fk_CadernoProva_TipoProva1_idx` (`TipoProva_CodTipo` ASC),
