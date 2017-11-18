@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 
 DBUsername = input('Type your database username: ')
 DBPassword = input('Type your database password: ')
-#Checa conexao
+
 try:
 	cnx = mysql.connector.connect(user = DBUsername, password = DBPassword,
 				host = '127.0.0.1',
@@ -17,13 +17,11 @@ except mysql.connector.Error as err:
 		print(err)
 else:
 	print("Connection estabilished successfuly")
-#executa query
+
 	cursor = cnx.cursor()
 	query = ("SELECT idCandidato FROM Candidato "
-		  "WHERE idade > 25")
-	cursor.execute(query)
-	for (bla) in cursor:
-		print("{}".format(bla))
-	cursor.close()
-#fecha conexao
+		"WHERE Idade BETWEEN 25 and ")
+	curA.execute(query)
+	for (idCandidato
+
 	cnx.close()
