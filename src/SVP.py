@@ -39,6 +39,9 @@ menuSelect['2'] = "Go back to the Menu"
 menuView = {}
 menuView['1'] = "Write View"
 menuView['2'] = "Go back to the Menu"
+menuTrigger = {}
+menuTrigger['1'] = "Write Trigger"
+menuTrigger['2'] = "Go back to the Menu"
 
 
 while True:
@@ -49,7 +52,8 @@ while True:
         cursor = cnx.cursor()
 #Switch for options
 #ATENTION: Modulirize in next versions of this program
-#ATENTION: Confirm Option with user
+#ATENTION: Confirm Option with user?
+#ATENTION: All the menu entries have the possibility to make selections, views, triggers and procedures. Fix that?
 
     selection=input("Please Select: ")
 
@@ -92,18 +96,34 @@ while True:
                     print("Something went wrong: {}".format(err))
                 for (query) in cursor:
                     print("{}".format(query))
-
-                    #except:
             elif selection == '2': #Entry para voltar ao Menu
                 break
 
     elif selection == '3': #MenuEntry para fazer Procedures
         print("Construct Procedure")
 
-    elif selection == '4':
-        print("Construct Trigger") #MenuEntry para fazer Triggers
+    elif selection == '4': #MenuEntry para fazer Triggers
 
-    elif selection == '5':
+
+        while True:
+
+            optionsTrigger=list(menuTrigger.keys())
+            optionsTrigger.sort()
+            for entry in optionsTrigger:
+                print(entry, menuTrigger[entry])
+            selection=input("Please Select: ")
+            if selection =='1': #Entry para efetuar Trigger
+                try:
+                    query = input("Please type the Trigger: ")
+                    cursor.execute(query)
+                except mysql.connector.Error as err:
+                    print("Something went wrong: {}".format(err))
+                for (query) in cursor:
+                    print("{}".format(query))
+            elif selection == '2': #Entry para voltar ao Menu
+                break
+
+    elif selection == '5': #MenuENtry para sair do programa
         cnx.close();
         break
 
