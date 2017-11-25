@@ -52,7 +52,8 @@ while True:
 #ATENTION: Confirm Option with user
 
     selection=input("Please Select: ")
-    if selection =='1':
+
+    if selection =='1': #MenuEntry para fazer Views
         #ATENTION: Need to save view in database and read in the selection menu.
         #ATENTION: Need to handle errors
 
@@ -63,18 +64,18 @@ while True:
             for entry in optionsView:
                 print(entry, menuView[entry])
             selection=input("Please Select: ")
-            if selection =='1':
+            if selection =='1': #Entry para efetuar Views
                 try:
                     query = input("Please type your View: ")
                     cursor.execute(query)
                     for (query) in cursor:
                         print("{}".format(query))
                 except mysql.connector.Error as err:
-                    print("Something went wrong: {}".format(err))
-            elif selection == '2':
+                    print("Something went wrong: {}".format(erra))
+            elif selection == '2': #Entry para voltar ao Menu
                 break
 
-    elif selection == '2':
+    elif selection == '2': #MenuEntry para fazer Selections
 
         while True:
 
@@ -83,7 +84,7 @@ while True:
             for entry in optionsSelect:
                 print(entry, menuSelect[entry])
             selection=input("Please Select: ")
-            if selection =='1':
+            if selection =='1': #Entry para efetuar Selections
                 try:
                     query = input("Please type your selection: ")
                     cursor.execute(query)
@@ -93,14 +94,14 @@ while True:
                     print("{}".format(query))
 
                     #except:
-            elif selection == '2':
+            elif selection == '2': #Entry para voltar ao Menu
                 break
 
-    elif selection == '3':
+    elif selection == '3': #MenuEntry para fazer Procedures
         print("Construct Procedure")
 
     elif selection == '4':
-        print("Construct Trigger")
+        print("Construct Trigger") #MenuEntry para fazer Triggers
 
     elif selection == '5':
         cnx.close();
