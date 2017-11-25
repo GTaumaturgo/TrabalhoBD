@@ -6,11 +6,11 @@ import csv
 
 #Checando conexao
 
-DBUsername = input('Type your database username: ')
-DBPassword = input('Type your database password: ')
+#DBUsername = input('Type your database username: ')
+#DBPassword = input('Type your database password: ')
 
 try:
-    cnx = mysql.connector.connect(user = DBUsername, password = DBPassword,
+    cnx = mysql.connector.connect(user = 'root', password = 'root',
                 host = '127.0.0.1',
                 database = 'bd_enem_2015')
 except mysql.connector.Error as err:
@@ -33,30 +33,68 @@ menu['2']="Read data from a Table"
 menu['3']="Make a Procedure"
 menu['4']="Make a Trigger"
 menu['5']="Exit"
+menuSelect = {}
+menuSelect['1'] = "Write a Select"
+menuSelect['2'] = "Go back to the Menu"
+menuView = {}
+menuView['1'] = "Write View"
+menuView['2'] = "Go back to the Menu"
+
+
 while True:
     options=list(menu.keys())
     options.sort()
     for entry in options:
         print(entry, menu[entry])
+        cursor = cnx.cursor()
 #Switch for options
 #ATENTION: Modulirize in next versions of this program
 #ATENTION: Confirm Option with user
+
     selection=input("Please Select: ")
     if selection =='1':
-        print("Construct View")
+        #ATENTION: Need to save view in database and read in the selection menu.
+        #ATENTION: Need to handle errors
+
+        while True:
+
+            optionsView=list(menuView.keys())
+            optionsView.sort()
+            for entry in optionsView:
+                print(entry, menuView[entry])
+            selection=input("Please Select: ")
+            if selection =='1':
+                try:
+                    query = input("Please type your View: ")
+                    cursor.execute(query)
+                    for (query) in cursor:
+                        print("{}".format(query))
+                except mysql.connector.Error as err:
+                    print("Something went wrong: {}".format(err))
+            elif selection == '2':
+                break
 
     elif selection == '2':
 
-        #ATENTION: Need to handle invalid Selections
-        #ATENTION: Need to handle multiple queries
-        cursor = cnx.cursor()
-        query = input("Please type your selection: ")
-        cursor.execute(query)
-        for (query) in cursor:
-            print("{}".format(query))
-            try:
-            except:
-        cnx.close();
+        while True:
+
+            optionsSelect=list(menuSelect.keys())
+            optionsSelect.sort()
+            for entry in optionsSelect:
+                print(entry, menuSelect[entry])
+            selection=input("Please Select: ")
+            if selection =='1':
+                try:
+                    query = input("Please type your selection: ")
+                    cursor.execute(query)
+                except mysql.connector.Error as err:
+                    print("Something went wrong: {}".format(err))
+                for (query) in cursor:
+                    print("{}".format(query))
+
+                    #except:
+            elif selection == '2':
+                break
 
     elif selection == '3':
         print("Construct Procedure")
@@ -65,6 +103,7 @@ while True:
         print("Construct Trigger")
 
     elif selection == '5':
+        cnx.close();
         break
 
     else:
