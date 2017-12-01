@@ -86,7 +86,7 @@ class View():
 		print( '\n')
 
 	def wait_user_consent(self):
-		input("Precione enter")
+		input("Pressione enter")
 
 	def print_query_input_description(self):
 		print("Digite a query desejada na liguagem sql:")

@@ -30,7 +30,9 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 	cands = []
 	tests = []
 	cads = []
+	redacaos = []
 	presenca_index = [88,89,90,91]
+	redacao_index = [109,115]
 	cods_index = [92,93,94,95]
 	codProva = set()
 	cod_to_info = {}
@@ -123,6 +125,17 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 				for cont2 in range(4):
 					aux += [row[prova_cad_index[cont1][cont2]]]
 				cads += [tuple(aux)]
+		
+		aux = []
+		aux += [cont_reg_prova]
+		for idx in redacao_index:
+			if(row[idx] != ''):
+				aux += [row[idx]]
+			else:
+				aux += [None]
+		aux += [str(cont_reg_cand)]
+		redacaos += [tuple(aux)]
+
 		cont_reg_cand = cont_reg_cand + 1
 		cont_reg_prova = cont_reg_prova + 1
 		i = i + 1
@@ -161,6 +174,11 @@ add_caderno = ("INSERT INTO bd_enem_2015.CadernoProva "
        "(Prova_IdProva, Presenca, Nota, Resposta,TipoProva_CodTipo) "
        "VALUES (%s, %s, %s, %s, %s)")
 
+add_red = ("INSERT INTO bd_enem_2015.Redacao "
+       "(IdRedacao, Situacao, Nota,Candidato_IdCandidato) "
+       "VALUES (%s, %s, %s, %s)")
+
+
 print("Cadastrando cods de prova")
 for cod in cods_to_add:
 	cursor.execute(add_cod, cod)
@@ -196,6 +214,12 @@ for test in tests:
 print("Cadastrando cadernos")
 for cad in cads:
 	cursor.execute(add_caderno, cad)
+	cnx.commit()
+
+print("Cadastrando redacoes")
+
+for red in redacaos:
+	cursor.execute(add_red, red)
 	cnx.commit()
 
 cursor.close()

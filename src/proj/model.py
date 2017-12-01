@@ -6,7 +6,7 @@ class Model():
 	def __init__(self):
 		self.cnx = None
 		try:
-			self.cnx = mysql.connector.connect(user = 'root', password = '',
+			self.cnx = mysql.connector.connect(user = 'root', password = 'root',
 			host = '127.0.0.1',
 			database = 'bd_enem_2015')
 		except mysql.connector.Error as err:
