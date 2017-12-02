@@ -35,15 +35,6 @@ insert into bd_enem_2015.TipoProva values(245, "BADEBCCDACCCACAAECEADCBEDAEAABDE
 insert into bd_enem_2015.TipoProva values(246, "DBBBADCADAEAEDCADCBECAAEDACCCEBDECABDBEEDEBCC",3,3);
 
 
-
-
-
-
-
-
-
-
-
 insert into bd_enem_2015.NecessidadeEspecial values(0, "Indicador de Baixa visão");
 insert into bd_enem_2015.NecessidadeEspecial values(1, "Indicador de Cegueira");
 insert into bd_enem_2015.NecessidadeEspecial values(2, "Indicador de Surdez");
@@ -147,3 +138,57 @@ insert into bd_enem_2015.AtendimentoEspecial values(31, "Indicador de solicitaç
 insert into bd_enem_2015.AtendimentoEspecial values(32, "Indicador de solicitação de mobiliário específico");
 insert into bd_enem_2015.AtendimentoEspecial values(33, "Indicador de solicitação de material específico");
 
+
+
+-- Procedures
+
+DROP PROCEDURE IF EXISTS melhores_alunos_estado;
+CREATE PROCEDURE melhores_alunos_estado
+(IN numero_candidatos INT, IN estado VARCHAR(45))
+  LANGUAGE SQL MODIFIES SQL DATA
+    SELECT
+      Candidato.*, Nota
+    FROM
+		Candidato
+	JOIN
+		UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF
+	JOIN
+		Prova ON Prova.Candidato_idCandidato = Candidato.idCandidato
+	JOIN
+		CadernoProva ON CadernoProva.Prova_idProva = Prova.idProva
+	WHERE
+      SiglaUF = estado
+	ORDER BY Nota DESC LIMIT numero_candidatos;
+
+DROP PROCEDURE IF EXISTS melhores_alunos_escola;
+CREATE PROCEDURE melhores_alunos_escola
+(IN numero_candidatos INT, IN escola VARCHAR(45))
+  LANGUAGE SQL MODIFIES SQL DATA
+    SELECT
+      Candidato.*, Nota
+    FROM
+		Candidato
+	JOIN
+		UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF
+	JOIN
+		Prova ON Prova.Candidato_idCandidato = Candidato.idCandidato
+	JOIN
+		CadernoProva ON CadernoProva.Prova_idProva = Prova.idProva
+	WHERE
+		CASE WHEN escola = 'publica' THEN
+			TipoEscolaEM = 2
+		WHEN escola = 'privada' THEN
+			TipoEscolaEM = 3
+		ELSE
+			TipoEscolaEM = -1
+		END
+	ORDER BY Nota DESC LIMIT numero_candidatos;
+
+
+DROP TRIGGER IF EXISTS backup_trigger;
+CREATE TABLE IF NOT EXISTS backup_table SELECT * FROM Candidato LIMIT 0;
+CREATE TRIGGER backup_trigger BEFORE UPDATE ON Candidato FOR EACH ROW
+  INSERT INTO backup_table
+    (idCandidato, CorRaca, AnoConcluEM, EstadoCivil, Nacionalidade, TipoEscolaEM,SituacaoConcluEM,TipoDeEnsiEM,Sexo,Idade,UnidadeFederativa_IdUF, Municipio_IdMunic, Escola_IdEscola)
+  VALUES
+    (OLD.idCandidato, OLD.CorRaca, OLD.AnoConcluEM, OLD.EstadoCivil, OLD.Nacionalidade, OLD.TipoEscolaEM, OLD.SituacaoConcluEM, OLD.TipoDeEnsiEM, OLD.Sexo, OLD.Idade, OLD.UnidadeFederativa_IdUF, OLD.Municipio_IdMunic, OLD.Escola_IdEscola);
