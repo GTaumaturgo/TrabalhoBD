@@ -42,6 +42,22 @@ class Model():
 			print( "Error: unable to fecth data")
 
 	def get_column_names(self, entity):
+		c = self.get_column_info(entity)
+		res = [a[0] for a in c]
+		return res
+
+	def get_tables(self):
+		cursor = self.cnx.cursor()
+
+		sql = 'show tables'
+		try:
+			cursor.execute(sql)
+			results = cursor.fetchall()
+			return results
+		except:
+			print("Error: unable to fetch data")
+
+	def get_column_info(self, entity):
 		# prepare a cursor object using cursor() method
 		cursor = self.cnx.cursor()
 

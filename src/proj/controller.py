@@ -32,19 +32,24 @@ class Controller():
 	def __init__(self):
 		self.mView  =  View()
 		self.mModel = Model()
-
 		self.init_arr()
 
 
 	def estrutura(self):
 		while(True):
 			try:
+				res = self.mModel.get_tables()
+				aux = [['Tabelas']]
+				for r in res:
+					aux += [[r[0]]]
+				self.mView.clear_screen()
+				self.mView.show_pretty_table(aux)
 				self.mView.print_menu_estrutura()
 				inp = int(self.mView.getInput())
+				if(inp == 11):
+					return
 			except:
-				pass
-			if(inp == 11):
-				return
+				input("hueeeeeeeeee")
 
 	def buscar(self):
 		while(True):
@@ -52,19 +57,21 @@ class Controller():
 			try:
 				inp = int(self.mView.getInput())
 	            # As buscas pre feitas de todos os dados de tabelas estão abaixo de 11
+				if(inp == 12):
+					return
 				if (inp < 11):
 					column_names = self.mModel.get_column_names(self.db_entities[inp-1])
+
 					results = self.mModel.select_all_from(self.db_entities[inp-1])
 
-					self.mView.show_column_names(column_names)
-					self.mView.show_select_result(results)
-					self.mView.wait_user_consent();
+					self.mView.show_pretty_table([column_names] +  results)
+
+
+					self.mView.wait_user_consent()
 				else:
 					self.eventos_busca[inp-11]()
 			except:
-				pass
-			if(inp == 12):
-				return
+				input("deu ruim maluco")
 
 	def exit(self):
 		sys.exit(0)
@@ -85,4 +92,5 @@ class Controller():
 		self.mView.print_query_input_description()
 		sql = self.mView.getInput()
 		results = self.mModel.run_query(sql)
-		self.mView.show_select_result(results)
+		self.mView.show_pretty_table(results)
+		self.mView.wait_user_consent()
