@@ -34,9 +34,8 @@ insert into bd_enem_2015.TipoProva values(244, "EBCCBEEDABDBDECDACCEDCCECAAEADCB
 insert into bd_enem_2015.TipoProva values(245, "BADEBCCDACCCACAAECEADCBEDAEAABDEDCBDECDBBBEED",3,0);
 insert into bd_enem_2015.TipoProva values(246, "DBBBADCADAEAEDCADCBECAAEDACCCEBDECABDBEEDEBCC",3,3);
 
-
 -- Views
-CREATE VIEW IF NOT EXISTS NotaFinalAluno AS
+CREATE VIEW NotaFinalAluno AS
 	SELECT
 		IdCandidato, (SUM(CadernoProva.Nota)+Redacao.Nota)/5 as Nota
 	FROM
@@ -50,10 +49,10 @@ CREATE VIEW IF NOT EXISTS NotaFinalAluno AS
 	JOIN 
 		Redacao ON Redacao.Candidato_IdCandidato = IdCandidato
 	GROUP BY IdCandidato;
-CREATE VIEW IF NOT EXISTS SexoIdade AS SELECT Sexo, Idade FROM Candidato;
-CREATE VIEW IF NOT EXISTS CandidatosDF AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'DF';
-CREATE VIEW IF NOT EXISTS CandidatosSP AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'SP';
-CREATE VIEW IF NOT EXISTS CandidatosRJ AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'RJ';
+CREATE VIEW SexoIdade AS SELECT Sexo, Idade FROM Candidato;
+CREATE VIEW CandidatosDF AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'DF';
+CREATE VIEW CandidatosSP AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'SP';
+CREATE VIEW CandidatosRJ AS SELECT Candidato.* FROM Candidato JOIN UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF WHERE SiglaUF = 'RJ';
 CREATE VIEW MediaHomens AS SELECT AVG(Nota) AS Media FROM Candidato NATURAL JOIN NotaFinalAluno WHERE Sexo = 'M' GROUP BY Sexo;
 CREATE VIEW MediaMulheres AS SELECT AVG(Nota) AS Media FROM Candidato NATURAL JOIN NotaFinalAluno WHERE Sexo = 'F' GROUP BY Sexo;
 
@@ -109,7 +108,8 @@ CREATE PROCEDURE melhores_alunos_escola
 			END 
 		ORDER BY Nota DESC LIMIT numero_candidatos;
 	SELECT * FROM melhores_alunos_escola;
-	END //
+	END // 
+
 
 -- Triggers
 
