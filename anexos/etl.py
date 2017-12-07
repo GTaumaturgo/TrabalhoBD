@@ -5,7 +5,7 @@ import csv
 
 
 cnx = mysql.connector.connect( user='root',
-								  password='root',
+								  password='',
 								  host='127.0.0.1',
 								  database='bd_enem_2015')
 
@@ -67,7 +67,7 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 		if(i == 0):
 			i = i + 1
 			continue
-		if(i == 400):
+		if(i == 280000):
 			break
 
 
@@ -79,7 +79,10 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 					codProva.add(int(row[idx]))
 					aux = []
 					aux += [int(row[idx])]
-					aux += [int(row[idx+13])]
+					if (str.isnumeric(row[idx+13])):
+						aux += [int(row[idx+13])]
+					else:
+						aux += [row[idx+13]]
 					t = cod_to_info[int(row[idx])]
 					aux += [t[0]]
 					aux += [t[1]]
