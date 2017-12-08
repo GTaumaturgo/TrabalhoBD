@@ -101,7 +101,7 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 			for idx in school_index:
 				aux += [row[idx]]
 			schools.add(tuple(aux))
-		
+
 		aux = []
 		aux += [str(cont_reg_cand)]
 		for idx in cand_index:
@@ -110,7 +110,7 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 			else:
 				aux += [None]
 		cands += [(tuple(aux))]
-		
+
 		aux = []
 		aux += [str(cont_reg_prova)]
 		for idx in test_index:
@@ -128,7 +128,7 @@ with open('output0.csv','r',encoding='latin-1') as csvfile:
 				for cont2 in range(4):
 					aux += [row[prova_cad_index[cont1][cont2]]]
 				cads += [tuple(aux)]
-		
+
 		aux = []
 		aux += [cont_reg_prova]
 		for idx in redacao_index:
@@ -186,7 +186,7 @@ print("Cadastrando cods de prova")
 for cod in cods_to_add:
 	cursor.execute(add_cod, cod)
 	cnx.commit()
-	
+
 
 print("cadastrando ufs")
 for uf in ufs:
