@@ -37,7 +37,7 @@ insert into bd_enem_2015.TipoProva values(246, "DBBBADCADAEAEDCADCBECAAEDACCCEBD
 -- Views
 CREATE VIEW NotaFinalAluno AS
 	SELECT
-		IdCandidato, (SUM(CadernoProva.Nota)+Redacao.Nota)/5 as Nota
+		IdCandidato, (SUM(CadernoProva.Nota))/4 as Nota
 	FROM
 		Candidato
 	JOIN
@@ -95,9 +95,7 @@ CREATE PROCEDURE melhores_alunos_escola
 		JOIN
 			UnidadeFederativa ON UnidadeFederativa.idUF = Candidato.UnidadeFederativa_idUF
 		JOIN
-			Prova ON Prova.Candidato_idCandidato = Candidato.IdCandidato
-		JOIN
-			CadernoProva ON CadernoProva.Prova_idProva = Prova.idProva
+			NotaFinalAluno ON NotaFinalAluno.IdCandidato = Candidato.IdCandidato
 		WHERE
 			CASE WHEN escola = 'publica' THEN
 				TipoEscolaEM = 2
